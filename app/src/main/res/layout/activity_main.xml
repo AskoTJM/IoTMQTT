@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/doortext"
+        android:layout_width="82dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="64dp"
+        android:gravity="center_horizontal"
+        android:text="Door"
+        app:layout_constraintStart_toEndOf="@+id/ledtext"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/ledtext"
+        android:layout_width="82dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="64dp"
+        android:gravity="center_horizontal"
+        android:text="Led"
+        app:layout_constraintStart_toEndOf="@+id/temperatureText"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/temperatureText"
+        android:layout_width="82dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="64dp"
+        android:gravity="center_horizontal"
+        android:text="Temperature"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textTemp"
+        android:layout_width="82dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="32dp"
+        android:gravity="center_horizontal"
+        android:text="Celsius"
+        app:layout_constraintStart_toStartOf="@+id/temperatureText"
+        app:layout_constraintTop_toBottomOf="@+id/temperatureText" />
+
+    <TextView
+        android:id="@+id/textLed"
+        android:layout_width="82dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:gravity="center_horizontal"
+        android:text="OnOff"
+        app:layout_constraintStart_toEndOf="@+id/textTemp"
+        app:layout_constraintTop_toBottomOf="@+id/ledtext" />
+
+    <TextView
+        android:id="@+id/textDoor"
+        android:layout_width="82dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:gravity="center_horizontal"
+        android:text="OpenClose"
+        app:layout_constraintStart_toEndOf="@+id/textLed"
+        app:layout_constraintTop_toBottomOf="@+id/doortext" />
+
+    <Button
+        android:id="@+id/ledBtn"
+        android:layout_width="82dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Click"
+        app:layout_constraintStart_toStartOf="@+id/textLed"
+        app:layout_constraintTop_toBottomOf="@+id/textLed" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
