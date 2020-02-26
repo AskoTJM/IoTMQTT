@@ -15,15 +15,17 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    MQTTHelper mqttHelper;
+    MQTTHelper mqttHelper; // = new MQTTHelper((getApplicationContext()));
 
     TextView dataTemp;
     TextView dataLed;
     TextView dataDoor;
+   // TextView logger;
 
     final String subscriptionTopic = "temperature";
     final String subscriptionTopic2 = "leds";
     final String subscriptionTopic3 = "doorbell";
+
 
 
 
@@ -37,14 +39,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         dataTemp = findViewById(R.id.textTemp);
         dataLed  = findViewById(R.id.textLed);
         dataDoor = findViewById(R.id.textDoor);
+       //  logger = findViewById(R.id.logText);
 
-        mqttHelper = new MQTTHelper((getApplicationContext()));
+        //mqttHelper = new MQTTHelper((getApplicationContext()));
 
         startMqtt();
     }
 
     private void startMqtt(){
-       // mqttHelper = new MQTTHelper((getApplicationContext()));
+        mqttHelper = new MQTTHelper((getApplicationContext()));
         mqttHelper.setCallback(new MqttCallbackExtended() {
             @Override
             public void connectComplete(boolean reconnect, String serverURI) {
@@ -60,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void messageArrived(String topic, MqttMessage message) throws Exception {
                 Log.w("Debug", message.toString());
                 Log.w("Debug", topic);
+                //logger.setText(message.toString());
                 switch (topic) {
                     case subscriptionTopic:
                         dataTemp.setText(message.toString());
@@ -87,6 +91,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+     /*
         if(v.getId() == R.id.ledBtn){
             String viesti = "Click";
             MqttMessage message = new MqttMessage(viesti.getBytes());
@@ -97,8 +102,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 exce.printStackTrace();
             }
         }
-
+    */
     }
+
 }
 
 

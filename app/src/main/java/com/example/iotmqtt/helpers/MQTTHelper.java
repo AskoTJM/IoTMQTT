@@ -65,7 +65,9 @@ public class MQTTHelper {
 
         try {
 
-            mqttAndroidClient.connect(mqttConnectOptions, null, new IMqttActionListener() {
+            //mqttAndroidClient.connect(mqttConnectOptions, null, new IMqttActionListener()
+            mqttAndroidClient.connect(mqttConnectOptions, null, new IMqttActionListener()
+            {
                 @Override
                 public void onSuccess(IMqttToken asyncActionToken) {
 
@@ -147,8 +149,9 @@ public class MQTTHelper {
         }
 
     }
+
     private void sendMessage(String topic, String message) {
-        if(topic == subscriptionTopic2 && message == "click"){
+        if (topic == subscriptionTopic2 && message == "click") {
             MqttMessage messageMqtt = new MqttMessage(message.getBytes());
             try {
                 mqttAndroidClient.publish(topic, messageMqtt);
@@ -156,6 +159,7 @@ public class MQTTHelper {
                 e.printStackTrace();
             }
         }
+
     }
 
 }
