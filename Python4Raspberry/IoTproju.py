@@ -68,11 +68,12 @@ def on_connect(client, userdata, flags, rc):
 def on_message(client, userdata, msg):
 #Tulostetaan debuggausta varten viestin sisältö.
     print(msg.topic+" "+str(msg.payload))
-#Jos viestillä tarkoitus ohjata lediä.
+
+#Jos viesti tulee ledscontrol topickiin on tarkoitus ohjata lediä.
     if msg.topic == "ledscontrol":
         led_toggle()
 
-        ##rrint(GPIO.input(ledPin))
+        
 
 # Led toggling jos led päälle se sammutetaan, jos ei se laitetaan päälle
 def led_toggle():

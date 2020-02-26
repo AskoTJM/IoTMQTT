@@ -11,6 +11,7 @@ import com.example.iotmqtt.helpers.MQTTHelper;
 
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallbackExtended;
+import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -24,6 +25,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     final String subscriptionTopic2 = "leds";
     final String subscriptionTopic3 = "doorbell";
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,13 +38,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         dataLed  = findViewById(R.id.textLed);
         dataDoor = findViewById(R.id.textDoor);
 
-
+        mqttHelper = new MQTTHelper((getApplicationContext()));
 
         startMqtt();
     }
 
     private void startMqtt(){
-        mqttHelper = new MQTTHelper((getApplicationContext()));
+       // mqttHelper = new MQTTHelper((getApplicationContext()));
         mqttHelper.setCallback(new MqttCallbackExtended() {
             @Override
             public void connectComplete(boolean reconnect, String serverURI) {
@@ -85,7 +88,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.ledBtn){
-
+            String viesti = "Click";
+            MqttMessage message = new MqttMessage(viesti.getBytes());
+            try {
+                mqttHelper.mqttAndroidClient.publish("ledscontrol", message);
+            } catch (MqttException exce){
+                System.err.println("Exception whilst subscribing");
+                exce.printStackTrace();
+            }
         }
 
     }
